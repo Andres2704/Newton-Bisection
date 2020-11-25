@@ -1,2 +1,2 @@
 # Newton-Bisection
-essa vai pros de fé
+GUI para o método de newton-raphson e bisseção.
