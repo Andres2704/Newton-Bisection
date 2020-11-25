@@ -105,7 +105,7 @@ class roots():
             
 # Defining the function and their derivative
 x = Symbol('x')
-f = sin(x)/(x**2) - cos(x)/(x) # Funcao aqui
+f = sin(x)/(x**2) - cos(x)/(x) # Functions here [This is an example]
 f_linha = lambdify(x, f.diff())
 f = lambdify(x, f)
 
