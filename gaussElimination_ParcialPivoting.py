@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 def gaussEliminationPivoting(A, B):
     n = len(A)
     results_perm = pd.DataFrame(columns='Pivô;Linha Pivo;Matriz A Permutada;Vetor b permutado'.split(';'))
