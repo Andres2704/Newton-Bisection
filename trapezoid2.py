@@ -1,8 +1,3 @@
-import numpy as np
-import pandas as pd
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-
 def trapezoid(f, a, b, eps, verbose = False):
     '''
     Trapezoidal rule for numerical integration
@@ -28,6 +23,12 @@ def trapezoid(f, a, b, eps, verbose = False):
     integral.append(I)
     
     k = 0
+    
+    if verbose:
+        print('Integral value: ', integral[k])
+        print('Relative Error: NaN')
+        print('Order: ', k)
+        
     while eps < er:
         k = k+1
         # Att the order and x division
@@ -55,19 +56,33 @@ def trapezoid(f, a, b, eps, verbose = False):
         
     return I, integral,  ER, k
 
+def plot2(I, ER):
+    fig, ax = plt.subplots(1,2, figsize=(15,5))
+    ax[0].plot(ER, 'o', color='r')
+    ax[0].plot(ER)
+    ax[0].set_title('Relative error x n')
+    ax[1].plot(I, 'o', color='r')
+    ax[1].plot(I)
+    ax[1].set_title('Integral x n')
+    plt.show()
     
 def plot(I, ER, save=False):
     xn = [i for i in range(len(I))]
     yy = 1
     xx = 2
     fig = make_subplots(
-        rows=yy, cols=xx
+        rows=yy, cols=xx,
+        horizontal_spacing = 0.15
     )
-    #fig.update_layout(plot_bgcolor='rgb(255,255,255)')
-    fig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True, title_font_family="Palatino Linotype")
-    fig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True, title_font_family="Palatino Linotype")
-    fig.update_layout(showlegend=False, title_text="Resultados da integração pela regra do trapézio")
     
+    # Layout adjustments
+    #fig.update_layout(plot_bgcolor='rgb(255,255,255)')
+    fig.update_xaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
+    fig.update_yaxes(showline=True, linewidth=1, linecolor='black', mirror=True)
+    fig.update_layout(showlegend=False, title_text="Resultados da integração pela regra do trapézio")
+    fig.update_layout(font=dict(family="Palatino Linotype",size=12,color="Black"))
+    
+    # Integral plot
     fig.add_trace(go.Scatter(x=xn, y=I , marker=dict(
                 color='royalblue',
                 line_width=0.5
@@ -75,6 +90,7 @@ def plot(I, ER, save=False):
     fig.update_xaxes(title_text="Ordem", row=1, col=1)
     fig.update_yaxes(title_text="Valor integral [UA]", row=1, col=1)
     
+    # Relative error plot
     fig.add_trace(go.Scatter(x=xn[1::], y=ER, marker=dict(
                 color='red',
                 line_width=0.5
@@ -99,5 +115,5 @@ a = -1.0
 b = 1.0
 
 I, integral, ER, n = trapezoid(lambda x: 1/(x+2), a, b, eps, verbose=False)
-plot(integral, ER, save=False)
+plot(integral, ER, save=True)
 df = to_df(integral, ER, save=True)
