@@ -31,8 +31,8 @@ for n in range(1,21):
     if (n > 1) and (ER[n-1]) < eps: break
     I_ = In
 
-print('Integral: ', Inew)
-print('n =',k)
+print('Integral: ', In)
+print('n =',n)
 
 fig, ax = plt.subplots(1,2, figsize=(15,5))
 ax[0].plot(ER, 'o')
