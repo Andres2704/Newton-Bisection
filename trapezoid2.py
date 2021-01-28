@@ -73,7 +73,7 @@ def plot(I, ER, save=False):
                 line_width=0.5
             )), row=1, col=1)
     fig.update_xaxes(title_text="Ordem", row=1, col=1)
-    fig.update_yaxes(title_text="Valor integral", row=1, col=1)
+    fig.update_yaxes(title_text="Valor integral [UA]", row=1, col=1)
     
     fig.add_trace(go.Scatter(x=xn[1::], y=ER, marker=dict(
                 color='red',
