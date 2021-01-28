@@ -20,19 +20,16 @@ def trapezio(f, a, b, I_, n):
 I_ = 0.0
 I = []
 ER = []
-eps = 1.0e-6
-a = -1.0
-b = 1.0
 for n in range(1,21):
-    # lambda x: (funtion to analyse here)
-    In = trapezio(lambda x: 1/(x+2), a, b, I_, n)
+    In = trapezio(lambda x: 1/(x+2),-1.0,1.0,I_,n)
     I.append(In)
     ER.append(abs(In - I_)/In)
-    if (n > 1) and (ER[n-1]) < eps: break
+    if (n > 1) and (ER[n-1]) < 1.0e-6: break
     I_ = In
 
 print('Integral: ', In)
-print('n =',n)
+print('n =', n-1)
+print('paineis =', 2**(n-1))
 
 fig, ax = plt.subplots(1,2, figsize=(15,5))
 ax[0].plot(ER, 'o', color='r')
