@@ -55,16 +55,6 @@ def trapezoid(f, a, b, eps, verbose = False):
         
         
     return I, integral,  ER, k
-
-def plot2(I, ER):
-    fig, ax = plt.subplots(1,2, figsize=(15,5))
-    ax[0].plot(ER, 'o', color='r')
-    ax[0].plot(ER)
-    ax[0].set_title('Relative error x n')
-    ax[1].plot(I, 'o', color='r')
-    ax[1].plot(I)
-    ax[1].set_title('Integral x n')
-    plt.show()
     
 def plot(I, ER, save=False):
     xn = [i for i in range(len(I))]
